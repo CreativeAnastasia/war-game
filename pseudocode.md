@@ -44,7 +44,7 @@ deck of cards is divided evenly, with each player receiving 26 cards. Both playe
 			cardsCount1 - 10;
 		}	
 			  	  
-####6. create `function winner():` 
+#### 6. create `function winner():` 
 		if  (cardsCount1 === 0) {
 			player2 is a winner;
 	    } 
