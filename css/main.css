@@ -1,0 +1,35 @@
+.card1 {
+  width: 4.0em;
+  height: 5.5em;
+  background-color: #fff;
+  border-radius: 0.20em;
+  border: 1px solid #c3c3c3;
+  margin: 20px;
+}
+.card2 {
+  width: 4.0em;
+  height: 5.5em;
+  background-color: #fff;
+  border-radius: 0.20em;
+  border: 1px solid red;
+  margin: 20px;
+}
+.avatar1 {
+  width: 6.0em;
+  height: 8.5em;
+  background-color: #fff;
+  border-radius: 0.20em;
+  border: 1px solid #c3c3c3;
+  margin: 20px;
+
+}
+
+.avatar2 {
+  width: 6.0em;
+  height: 8.5em;
+  background-color: #fff;
+  border-radius: 0.20em;
+  border: 1px solid #c3c3c3;
+  margin: 20px;
+
+}
