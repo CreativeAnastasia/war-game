@@ -1,13 +1,18 @@
 // <------- variables ------->
 var player1, player2;
-var deck, deck1, deck2 = [];
+var deck, deck1, deck2;
 
+
+
+// <------- cached dom elements ------->
+var $card1 = $('#card1');
+var $card2 = $('#card2');
 
 
 
 // <------- event listeners ------->
 $('#newgame').on('click', startGame)
-$('#battle').on('click', dealDeck)
+$('#battle').on('click', dealBattle)
 
 
 
@@ -22,7 +27,7 @@ function buildDeck() {
       });
     });
   });
-return deck;
+  return deck;
 }
 
 
@@ -42,48 +47,71 @@ function shuffleDeck(array){
 function splitDeck(array){
   deck1 = deck.splice(0, 26);
   deck2 = deck;
-  return deck1, deck2;
-  }
+}
 
 
 function startGame(){
-  var array=[];
+  // initialize variables
+  deck1 = deck2 = [];
   splitDeck(shuffleDeck(buildDeck()));
 }
 
 
-
-function dealDeck() {
-  var $card1 = $('.card1');
-
+//dealBattle -> render function possibly?
+function dealBattle() {
   if (deck1.length > 0){
     var card = deck1.shift();
-    $card1.addClass(card.css)
+    player1 = card;
+
+
+    $card1.removeClass();
+    $card1.addClass('card ' + card.css);
+
   } else{
     return null;
   }
 
-  var $card2 = $('.card2');
 
   if (deck2.length > 0){
     var card = deck2.shift();
-    $card2.addClass(card.css)
+    player2 = card;
+
+
+    $card2.removeClass();
+    $card2.addClass('card ' + card.css);
+
+
   } else{
     return null;
   }
 
 
+  if (player1.rank > player2.rank) {
+    deck1.push(player1);
+    deck1.push(player2);
+    console.log ("Player 1 wins");
+    console.log (deck1.length);
+    console.log (deck2.length);
+  }
+
+  if (player1.rank < player2.rank) {
+    deck2.push(player2);
+    deck2.push(player1);
+    console.log ("Player 2 wins");
+    console.log (deck1.length);
+    console.log (deck2.length);
+
+  }
+  if (player1.rank === player2.rank) {
+    gameWar();
+  }
+}
+
+function gameWar(){
+  console.log ("In the war function");
 
 }
 
-function gamePlay(arg1, arg2){
-  if (deck1.rank === deck2.rank){
-    console.log("war mode");
-  }
-  if (deck1.rank > deck2.rank) {
 
-
-  }
-}
 
 

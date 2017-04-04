@@ -1,4 +1,4 @@
-.card1 {
+#card1 {
   width: 4.0em;
   height: 5.5em;
   background-color: #fff;
@@ -6,7 +6,7 @@
   border: 1px solid #c3c3c3;
   margin: 20px;
 }
-.card2 {
+#card2 {
   width: 4.0em;
   height: 5.5em;
   background-color: #fff;
