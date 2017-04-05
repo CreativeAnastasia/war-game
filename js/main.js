@@ -105,16 +105,21 @@ function dealBattle() {
     $('#win1').hide();
     $('#win2').show();
   }
+  console.log("winner =", winner);
+
   while (!winner && !loser) {
+  console.log("inside while loop")
+  //debugger
+    render();
     didWar = true;
+
     dealWar();
     winner = getWinner();
   }
   var victor = winner === 1 ? deck1 : deck2;
   victor.push(...inPlay1);
   victor.push(...inPlay2);
-  display1 = inPlay1[0].css;
-  display2 = inPlay2[0].css;
+
   render();
 }
 
@@ -129,9 +134,12 @@ function dealWar() {
       inPlay2.unshift(deck2.shift());
     }
   }
+  render()
 }
 
 function render() {
+  display1 = inPlay1[0].css;
+  display2 = inPlay2[0].css;
   if (display1) {
     $('#newgame').hide();
     $('#deck1').text(deck1.length);
@@ -148,8 +156,13 @@ function render() {
 }
 
 function getWinner() {
+  render()
+
+  console.log('1', inPlay1[0])
+  console.log('2', inPlay2[0])
   if (inPlay1[0].rank === inPlay2[0].rank) return 0;
   return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
+
 }
 
 
