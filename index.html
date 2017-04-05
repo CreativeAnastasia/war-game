@@ -6,6 +6,7 @@
   <link rel="stylesheet" href="css/card-deck-css/css/cardstarter.css">
   <link rel="stylesheet" href="css/card-deck-css/css/cardstarter.min.css">
   <link rel="stylesheet" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
 <script
   src="https://code.jquery.com/jquery-3.2.1.min.js"
   integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
@@ -14,9 +15,13 @@
 <body class="wargame">
 
   <h1>War Game</h1>
+
+  <h3 id="message"></h3>
+
+  <div class="avatar1"></div>
+  <div class="avatar2"></div>
+
   <div class="board-war" id="board">
-    <div class="avatar1"></div>
-    <div class="avatar2"></div>
 
     <div class="card back"></div>
     <div id="deck1" class="score"></div>
@@ -35,14 +40,17 @@
     </div>
 
     <div class="bottom-button">
-      <button id="battle">Let's GO to battle!</button>
-      <button id="war">Let's GO to WAR!</button>
-      <button id="win1">Player 1 wins!</button>
-      <button id="win2">Player 2 wins!</button>
+      <button style="display:none" id="battle">Let's GO to battle!</button>
+      <button style="display:none" id="war">Let's GO to WAR!</button>
     </div>
 
 
-</div>
+  </div>
+
+<!--   <div id="instructions">
+    instructions here
+    <button id="go-back-btn">Go Back to War</button>
+  </div> -->
 <script src="js/main.js"></script>
 </body>
 </html>

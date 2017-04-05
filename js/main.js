@@ -3,15 +3,8 @@ var inPlay1, inPlay2;
 var winner, loser;
 var deck, deck1, deck2;
 var display1, display2;
-var didWar;
-
-
-    $('#battle').hide();
-    $('#war').hide();
-    $('#win1').hide();
-    $('#win2').hide();
-
-
+var message;
+var inWar;
 
 // <------- cached dom elements ------->
 var $card1 = $('#card1');
@@ -21,8 +14,9 @@ var $board = $('#board');
 
 
 // <------- event listeners ------->
-$('#newgame').on('click', startGame)
-$('#battle').on('click', dealBattle)
+$('#newgame').on('click', startGame);
+$('#battle').on('click', dealBattle);
+$('#war').on('click', dealBattle);
 $('#restart').on('click', startGame)
 $('#rules').on('click', function () {
                 var w = window.open("", "popupWindow", "width=600, height=400, scrollbars=yes");
@@ -69,72 +63,64 @@ function splitDeck(array){
 
 function startGame(){
   // initialize variables
+  inWar = false;
   deck1 = deck2 = [];
   loser = 0;
   display1 = display2 = null;
   splitDeck(shuffleDeck(buildDeck()));
   dealBattle();
-  $('#war').hide();
-  $('#win1').hide();
-  $('#win2').hide();
-
 }
 
 
 //dealBattle -> render function possibly?
 function dealBattle() {
-  $('#battle').show();
-  didWar = false;
-  inPlay1 = [];
-  inPlay2 = [];
-  if (deck1.length){
-    inPlay1.push(deck1.shift());
-  } else{
-    loser = 1;
-  }
-  if (deck2.length){
-    inPlay2.push(deck2.shift());
-  } else{
-    loser = 2;
+  if (inWar) {
+    dealWar();
+  } else {
+    inPlay1 = [];
+    inPlay2 = [];
+    if (deck1.length){
+      inPlay1.push(deck1.shift());  //removes the first card from the deck and puts it at the end of the array
+    } else{
+      loser = 1; //deck length is 0 we return loser player 1
+      winner = 2;
+    }
+    if (deck2.length){
+      inPlay2.push(deck2.shift());
+    } else{
+      loser = 2;
+      winner = 1;
+    }
   }
   winner = getWinner();
-  if (winner === 1) {
-    $('#win2').hide();
-    $('#win1').show();
-  } else if (winner ===2){
-    $('#win1').hide();
-    $('#win2').show();
+  if (winner) message = `Player ${winner} Wins`;
+  if (loser) message = `Game Over - Player ${winner} Wins`;
+
+  if (!winner && !loser) {
+    inWar = true;
+    message = "It's WAR!";
+  } else {
+    inWar = false;
+    var victor = winner === 1 ? deck1 : deck2;
+    victor.push(...inPlay1);
+    victor.push(...inPlay2);
   }
-  console.log("winner =", winner);
-
-  while (!winner && !loser) {
-  console.log("inside while loop")
-  //debugger
-    render();
-    didWar = true;
-
-    dealWar();
-    winner = getWinner();
-  }
-  var victor = winner === 1 ? deck1 : deck2;
-  victor.push(...inPlay1);
-  victor.push(...inPlay2);
-
   render();
 }
 
 function dealWar() {
   if (deck1.length < 4) {
     loser = 1;
+    winner = 2;
   } else if (deck2.length < 4) {
     loser = 2;
+    winner = 1;
   } else {
     for (var i=0; i < 4; i++){
       inPlay1.unshift(deck1.shift());
       inPlay2.unshift(deck2.shift());
     }
   }
-  render()
 }
 
 function render() {
@@ -148,21 +134,17 @@ function render() {
     $card1.addClass('card ' + display1);
     $card2.removeClass();
     $card2.addClass('card ' + display2);
-    // if loser display that message
-    // otherwise display battle loser message
   } else {
     $('#newgame').show();
   }
+  inWar ? $('#battle').hide() : $('#battle').show();
+  inWar ? $('#war').show() : $('#war').hide();
+  $('#message').html(message);
 }
 
 function getWinner() {
-  render()
-
-  console.log('1', inPlay1[0])
-  console.log('2', inPlay2[0])
   if (inPlay1[0].rank === inPlay2[0].rank) return 0;
   return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
-
 }
 
 
