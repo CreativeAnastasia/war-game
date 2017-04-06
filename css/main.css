@@ -11,9 +11,13 @@ h1 {
   font-size: 40px;
   margin-top: 0px;
   margin-bottom: 0px;
+  text-align: center;
+  font-size: 55px;
 }
 #message {
   color: white;
+  text-align: center;
+  font-size: 30px;
 }
 
 
@@ -40,8 +44,8 @@ h1 {
   font-size: 30px;
   display: inline-block;
   position: relative;
-  left: -52px;
-  top: -38px;
+  left: -83px;
+  top: -62px;
 }
 
 .avatar1 {
@@ -56,6 +60,7 @@ h1 {
   position: absolute;
   left: 0;
 
+
 }
 
 .avatar2 {
@@ -67,10 +72,16 @@ h1 {
   margin: 20px;
   background: url('../avatar2.png') no-repeat;
   background-size: 100%;
-  position: absolute;
+
   right: 0;
+
 }
 #board {
+
+}
+
+.top-button {
   position: absolute;
-  bottom: 20%;
+  left: 20px;
+
 }

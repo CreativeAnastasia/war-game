@@ -76,23 +76,30 @@ function startGame(){
 function dealBattle() {
   if (inWar) {
     dealWar();
+
   } else {
     inPlay1 = [];
     inPlay2 = [];
     if (deck1.length){
       inPlay1.push(deck1.shift());  //removes the first card from the deck and puts it at the end of the array
+
     } else{
       loser = 1; //deck length is 0 we return loser player 1
       winner = 2;
     }
     if (deck2.length){
       inPlay2.push(deck2.shift());
+
+
     } else{
       loser = 2;
       winner = 1;
     }
   }
+
   winner = getWinner();
+
+
   if (winner) message = `Player ${winner} Wins`;
   if (loser) message = `Game Over - Player ${winner} Wins`;
 
@@ -113,6 +120,7 @@ function dealWar() {
     loser = 1;
     winner = 2;
   } else if (deck2.length < 4) {
+
     loser = 2;
     winner = 1;
   } else {
@@ -128,25 +136,46 @@ function render() {
   display2 = inPlay2[0].css;
   if (display1) {
     $('#newgame').hide();
+    $('#restart').show();
     $('#deck1').text(deck1.length);
     $('#deck2').text(deck2.length);
     $card1.removeClass();
-    $card1.addClass('card ' + display1);
+    $card1.addClass('card large ' + display1);
     $card2.removeClass();
-    $card2.addClass('card ' + display2);
+    $card2.addClass('card large ' + display2);
   } else {
     $('#newgame').show();
   }
+  if (deck1.length === 0) {
+    $('#battle').hide();
+    $('#newgame').show();
+    $('#restart').hide();
+    $('#message').html(`Game Over - Player 2 Wins!`);
+
+
+  } else if (deck2.length === 0) {
+    $('#battle').hide();
+    $('#newgame').show();
+    $('#restart').hide();
+    $('#message').html(`Game Over - Player 1 Wins!`);
+
+
+
+
+  } else {
+
   inWar ? $('#battle').hide() : $('#battle').show();
   inWar ? $('#war').show() : $('#war').hide();
   $('#message').html(message);
+  }
 }
 
 function getWinner() {
   if (inPlay1[0].rank === inPlay2[0].rank) return 0;
   return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
-}
 
+
+}
 
 
 
