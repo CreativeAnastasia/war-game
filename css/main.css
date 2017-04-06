@@ -79,9 +79,17 @@ h1 {
 #board {
 
 }
+button {
+  font-size: 30px;
+  border-radius: 8px;
+}
+
+#war {
+  color: #FFFFFF;
+  text-align: center;
+}
 
 .top-button {
   position: absolute;
   left: 20px;
-
 }

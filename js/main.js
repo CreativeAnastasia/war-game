@@ -16,8 +16,8 @@ var $board = $('#board');
 // <------- event listeners ------->
 $('#newgame').on('click', startGame);
 $('#battle').on('click', dealBattle);
-$('#war').on('click', dealBattle);
-$('#restart').on('click', startGame)
+$('#war').on('click', handleWarClick);
+$('#restart').on('click', startGame);
 $('#rules').on('click', function () {
                 var w = window.open("", "popupWindow", "width=600, height=400, scrollbars=yes");
                 var $w = $(w.document.body);
@@ -68,68 +68,82 @@ function startGame(){
   loser = 0;
   display1 = display2 = null;
   splitDeck(shuffleDeck(buildDeck()));
-  dealBattle();
+  $('#deck1').text(deck1.length);
+  $('#deck2').text(deck2.length);
+  $('#battle').show();
+  $('#message').html(" ");
+  display1 = display2 = null;
 }
 
-
-//dealBattle -> render function possibly?
 function dealBattle() {
-  if (inWar) {
-    dealWar();
+  inPlay1 = [];
+  inPlay2 = [];
 
-  } else {
-    inPlay1 = [];
-    inPlay2 = [];
-    if (deck1.length){
-      inPlay1.push(deck1.shift());  //removes the first card from the deck and puts it at the end of the array
-
-    } else{
-      loser = 1; //deck length is 0 we return loser player 1
-      winner = 2;
-    }
-    if (deck2.length){
-      inPlay2.push(deck2.shift());
-
-
-    } else{
-      loser = 2;
-      winner = 1;
-    }
-  }
+  inPlay1.push(deck1.shift());
+  inPlay2.push(deck2.shift());
 
   winner = getWinner();
+    if (winner === 0) {
+      inWar = true;
+    } else {
+      transferCards();
+    }
+  render();
+}
 
-
-  if (winner) message = `Player ${winner} Wins`;
-  if (loser) message = `Game Over - Player ${winner} Wins`;
-
-  if (!winner && !loser) {
-    inWar = true;
-    message = "It's WAR!";
+function handleWarClick() {
+  if (deck1.length < 4 || deck2.length < 4){
+      overAllWarLoser();
   } else {
-    inWar = false;
-    var victor = winner === 1 ? deck1 : deck2;
-    victor.push(...inPlay1);
-    victor.push(...inPlay2);
+    dealWar();
+  }
+}
+
+function overAllWarLoser() {
+  if (deck1.length < 4) {
+    loser = 1;
+    winner = 2;
+    transferCards();
+
+  } else if (deck2.length < 4){
+    loser = 2;
+    winner = 1;
+    transferCards();
   }
   render();
 }
 
-function dealWar() {
-  if (deck1.length < 4) {
-    loser = 1;
-    winner = 2;
-  } else if (deck2.length < 4) {
+function transferCards() {
+    var victor = winner === 1 ? deck1 : deck2;
+    victor.push(...inPlay1);
+    victor.push(...inPlay2);
+    inWar = false;
 
-    loser = 2;
-    winner = 1;
-  } else {
+    if (deck1.length === 0) {
+        loser = 1;
+        winner = 2;
+    } else if (deck2.length === 0 ) {
+        loser = 2;
+        winner = 1;
+    }
+}
+
+
+function dealWar() {
+
     for (var i=0; i < 4; i++){
       inPlay1.unshift(deck1.shift());
       inPlay2.unshift(deck2.shift());
     }
+    winner = getWinner();
+      if (winner === 0) {
+      dealWar();
+    } else {
+    transferCards();
   }
+    render();
 }
+
 
 function render() {
   display1 = inPlay1[0].css;
@@ -137,6 +151,8 @@ function render() {
   if (display1) {
     $('#newgame').hide();
     $('#restart').show();
+    $('#war').hide();
+    $('#battle').show();
     $('#deck1').text(deck1.length);
     $('#deck2').text(deck2.length);
     $card1.removeClass();
@@ -146,35 +162,32 @@ function render() {
   } else {
     $('#newgame').show();
   }
-  if (deck1.length === 0) {
+
+  if (winner !=0) message = `Player ${winner} Wins`;
+  if (loser !=0) {
+    message = `Game Over - Player ${winner} Wins`;
     $('#battle').hide();
     $('#newgame').show();
     $('#restart').hide();
-    $('#message').html(`Game Over - Player 2 Wins!`);
-
-
-  } else if (deck2.length === 0) {
-    $('#battle').hide();
-    $('#newgame').show();
-    $('#restart').hide();
-    $('#message').html(`Game Over - Player 1 Wins!`);
-
-
-
-
-  } else {
-
-  inWar ? $('#battle').hide() : $('#battle').show();
-  inWar ? $('#war').show() : $('#war').hide();
-  $('#message').html(message);
   }
+
+
+  if (inWar === true) {
+    message = "It's WAR!";
+    $('#battle').hide();
+    $('#war').show();
+    }
+
+  $('#message').html(message);
+
 }
 
 function getWinner() {
-  if (inPlay1[0].rank === inPlay2[0].rank) return 0;
-  return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
-
-
+  if (inPlay1[0].rank === inPlay2[0].rank) {
+    return 0;
+  } else {
+    return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
+  }
 }
 
 
