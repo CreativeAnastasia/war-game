@@ -6,16 +6,16 @@
 The deck is divided evenly, with each player receiving 26 cards, dealt one at a time, face down. Anyone may deal first. Each player places his stack of cards face down, in front of him.
 
 #### The Play
-<img src="http://i.imgur.com/99wD30b.png" width="500">
+<img src="http://i.imgur.com/99wD30b.png" width="600">
 
 Each player turns up a card at the same time and the player with the higher card takes both cards and puts them, face down, on the bottom of his stack. Aces are high, and suits are ignored.
 
-<img src="http://i.imgur.com/3LARgHL.png" width="500">
+<img src="http://i.imgur.com/3LARgHL.png" width="600">
 
 If both players draw a card of the same rank, e.g. they both draw 8s, then there's a war. The face up cards are left on the table and each player puts three cards face down on the table, and then puts one card face up. The face up card determines who wins the war and gets all 10 cards that are on the table at this point. If the face up card is again the same rank, then the war goes on, three more face down, one face up etc.
 
 #### How to Keep Score
-<img src="http://i.imgur.com/x0IXoxG.png" width="500">
+<img src="http://i.imgur.com/x0IXoxG.png" width="600">
 
 First player to finish all their cards loses the game. If a player finishes their cards during a war without having enough cards to finish the war then he loses immediately.
  

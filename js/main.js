@@ -12,19 +12,16 @@ var sounds = {
 };
 
 
-
 // <------- cached dom elements ------->
 var $card1 = $('#card1');
 var $card2 = $('#card2');
 var $board = $('#board');
 
 
-
 // <------- event listeners ------->
 $('#newgame').on('click', startGame);
 $('#battle').on('click', handleBattleClick);
 $('#war').on('click', handleWarClick);
-$('#restart').on('click', startGame);
 $('#rules').on('click', function () {
                 var w = window.open("", "popupWindow", "width=400, height=450, scrollbars=yes");
                 var $w = $(w.document.body);
@@ -45,6 +42,7 @@ function buildDeck() {
   return deck;
 }
 
+
 function shuffleDeck(array){
   var i,j = 0;
   var temp = null;
@@ -58,10 +56,12 @@ function shuffleDeck(array){
   return array;
 }
 
+
 function splitDeck(array){
   deck1 = deck.splice(0, 26);
   deck2 = deck;
 }
+
 
 function startGame(){
   // initialize variables
@@ -78,6 +78,15 @@ function startGame(){
   render();
 }
 
+
+function dealCards(num) {
+  for (var i = 0; i < num; i++) {
+    inPlay1.unshift(deck1.shift());
+    inPlay2.unshift(deck2.shift());
+  }
+}
+
+
 function handleBattleClick() {
   playWarSound('battle');
   inPlay1 = [];
@@ -93,12 +102,6 @@ function handleBattleClick() {
   render();
 }
 
-function dealCards(num) {
-  for (var i = 0; i < num; i++) {
-    inPlay1.unshift(deck1.shift());
-    inPlay2.unshift(deck2.shift());
-  }
-}
 
 function handleWarClick() {
   playWarSound('war');
@@ -112,10 +115,12 @@ function handleWarClick() {
   render();
 }
 
+
 function playWarSound(name) {
   player.src = sounds[name];
   player.play();
 }
+
 
 function doWar() {
   dealCards(4);
@@ -128,6 +133,7 @@ function doWar() {
   }
   render();
 }
+
 
 function transferCards() {
   var victor = winner === 1 ? deck1 : deck2;
@@ -144,6 +150,7 @@ function transferCards() {
   }
 }
 
+
 function getWinner() {
   if (inPlay1[0].rank === inPlay2[0].rank) {
     return 0;
@@ -151,6 +158,7 @@ function getWinner() {
     return inPlay1[0].rank > inPlay2[0].rank ? 1 : 2;
   }
 }
+
 
 function render() {
   if (inPlay1[0]) {
@@ -160,8 +168,6 @@ function render() {
   $('#deck1').text(deck1.length);
   $('#deck2').text(deck2.length);
   if (display1) {
-    $('#newgame').hide();
-    $('#restart').show();
     $('#battle').show();
     $card1.removeClass();
     $card1.addClass('card large ' + display1);
@@ -169,7 +175,6 @@ function render() {
     $card2.addClass('card large ' + display2);
   } else {
     $('#newgame').show();
-    $('#restart').hide();
     $card1.removeClass();
     $card1.addClass('card large');
     $card2.removeClass();
@@ -191,11 +196,9 @@ function render() {
     $('#war').hide();
     $('#battle').hide();
     $('#newgame').show();
-    $('#restart').hide();
   }
 
   $('#message').html(message);
-
 }
 
 

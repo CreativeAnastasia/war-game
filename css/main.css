@@ -20,23 +20,13 @@ h1 {
   height: 50px;
 }
 
-
-#card1 {
+#card1, #card2 {
   position: relative;
   width: 4.0em;
   height: 5.5em;
   background-color: #fff;
   border-radius: 0.20em;
   border: 1px solid #c3c3c3;
-  margin: 0 10px;
-}
-#card2 {
-  position: relative;
-  width: 4.0em;
-  height: 5.5em;
-  background-color: #fff;
-  border-radius: 0.20em;
-  border: 1px solid #c3c3c3;;
   margin: 0 10px;
 }
 
@@ -47,7 +37,6 @@ h1 {
   left: -83px;
   top: -62px;
 }
-
 
 .avatar1 {
   background: url('../avatar1.png') no-repeat;
@@ -94,7 +83,6 @@ button {
   transition: none;
 }
 
-
 #battle:hover {
   box-shadow: 0 4px #119e4d;
   top: 2px;
@@ -111,18 +99,15 @@ button {
   transition: none;
 }
 
-
 .top-button {
   margin-top: 50px;
   text-align: center;
-
 }
 
 .bottom-button {
   margin-top: 50px;
   text-align: center;
 }
-
 
 .card-wrap {
   display: inline-block;
