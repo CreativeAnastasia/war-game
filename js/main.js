@@ -71,9 +71,10 @@ function startGame(){
   inPlay1 = [];
   inPlay2 = [];
   loser = 0;
+  winner = 0;
   display1 = display2 = null;
-  message = "";
   splitDeck(shuffleDeck(buildDeck()));
+  message = " ";
   render();
 }
 

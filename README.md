@@ -1,4 +1,5 @@
 ## War-game
+<img src="http://i.imgur.com/3LARgHL.png" width="900">
 #### The Deal
 The deck is divided evenly, with each player receiving 26 cards, dealt one at a time, face down. Anyone may deal first. Each player places his stack of cards face down, in front of him.
 
