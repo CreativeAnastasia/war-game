@@ -18,6 +18,7 @@ h1 {
   color: white;
   text-align: center;
   font-size: 30px;
+  height: 50px;
 }
 
 
@@ -28,7 +29,7 @@ h1 {
   background-color: #fff;
   border-radius: 0.20em;
   border: 1px solid #c3c3c3;
-  margin: 20px;
+  margin: 0 10px;
 }
 #card2 {
   position: relative;
@@ -36,8 +37,8 @@ h1 {
   height: 5.5em;
   background-color: #fff;
   border-radius: 0.20em;
-  border: 1px solid red;
-  margin: 20px;
+  border: 1px solid #c3c3c3;;
+  margin: 0 10px;
 }
 
 .score {
@@ -48,37 +49,31 @@ h1 {
   top: -62px;
 }
 
+
 .avatar1 {
-  width: 8.5em;
-  height: 8.5em;
-  background-color: #fff;
-  border-radius: 0.20em;
-  border: 3px solid #c3c3c3;
-  margin: 20px;
   background: url('../avatar1.png') no-repeat;
-  background-size: 100%;
-  position: absolute;
-  left: 0;
-
-
 }
 
 .avatar2 {
+  background: url('../avatar2.png') no-repeat;
+}
+
+.av {
+  display: inline-block;
   width: 8.5em;
   height: 8.5em;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 0.20em;
-  border: 3px solid #c3c3c3;
-  margin: 20px;
-  background: url('../avatar2.png') no-repeat;
+  border: 3px solid rgba(200, 200, 200, 0.5);
+  margin: 10px;
   background-size: 100%;
-
-  right: 0;
-
 }
+
 #board {
-
+  margin: 50px auto;
+  text-align: center;
 }
+
 button {
   font-size: 30px;
   border-radius: 8px;
@@ -90,6 +85,16 @@ button {
 }
 
 .top-button {
-  position: absolute;
-  left: 20px;
+  margin-top: 50px;
+  text-align: center;
+}
+.bottom-button {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.card-wrap {
+  display: inline-block;
+  position: relative;
+  top: -8px;
 }
