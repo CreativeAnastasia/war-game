@@ -19,7 +19,11 @@ First player to finish all their cards loses the game. If a player finishes thei
 
 ##  Getting Started: Installation instructions. 
 
-For your game, this section will include the link to your hosted game's site.
-
+Here is the link to play the game:
+<br>[War card game app](https://creativeanastasia.github.io/war-game)</br>
 ## Next Steps: 
-TBD
+
+  * animation while players make moves; 
+  * ability for players to type their name which will then be displayed on the screen;
+  *  ability for players to choose their one unique avatar;
+  *  "rules" pop-up needs to be displayed in a better way in order to make UI more effective;

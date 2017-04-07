@@ -2,7 +2,6 @@
   font-family: 'Gloria Hallelujah', cursive;
 }
 body {
-  /*background: url('http://i.imgur.com/BruV8Hk.jpg');*/
   background: url('../back3.jpg');
   background-size: inherit;
 }
@@ -79,19 +78,51 @@ button {
   border-radius: 8px;
 }
 
-#war {
-  color: #FFFFFF;
-  text-align: center;
+#war:hover {
+  box-shadow: 0 4px #ab3c3c;
+  top: 2px;
 }
+
+#war {
+  text-align: center;
+  border-radius: 20px;
+  background: #cb4e4e;
+  color: #fff;
+  box-shadow: 0 6px #ab3c3c;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+}
+
+
+#battle:hover {
+  box-shadow: 0 4px #119e4d;
+  top: 2px;
+}
+
+#battle {
+  text-align: center;
+  border-radius: 20px;
+  background: #17aa56;
+  color: #fff;
+  box-shadow: 0 6px #119e4d;
+  -webkit-transition: none;
+  -moz-transition: none;
+  transition: none;
+}
+
 
 .top-button {
   margin-top: 50px;
   text-align: center;
+
 }
+
 .bottom-button {
   margin-top: 50px;
   text-align: center;
 }
+
 
 .card-wrap {
   display: inline-block;
