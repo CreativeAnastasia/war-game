@@ -5,6 +5,13 @@ var deck, deck1, deck2;
 var display1, display2;
 var message;
 var inWar;
+var player = new Audio();
+var sounds = {
+  war: 'http://www.freesound.org/data/previews/352/352719_6513636-lq.mp3',
+  battle: 'http://www.freesound.org/data/previews/60/60945_215874-lq.mp3'
+};
+
+
 
 // <------- cached dom elements ------->
 var $card1 = $('#card1');
@@ -72,6 +79,7 @@ function startGame(){
 }
 
 function handleBattleClick() {
+  playWarSound('battle');
   inPlay1 = [];
   inPlay2 = [];
   dealCards(1);
@@ -93,8 +101,7 @@ function dealCards(num) {
 }
 
 function handleWarClick() {
-  console.log("1!");
-  playWarSound();
+  playWarSound('war');
   if (deck1.length > 3 && deck2.length > 3){
     doWar();
   } else {
@@ -105,8 +112,9 @@ function handleWarClick() {
   render();
 }
 
-function playWarSound() {
-  console.log("Sound!");
+function playWarSound(name) {
+  player.src = sounds[name];
+  player.play();
 }
 
 function doWar() {
